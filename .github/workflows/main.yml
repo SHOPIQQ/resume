@@ -1,0 +1,33 @@
+name: Build and Deploy Resume
+
+on:
+  push:
+    paths:
+      - '*.tex'
+      - '*.cls'
+      - '*.bib'
+      - '*.png'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build Docker image
+      run: docker build -t resume-builder .
+
+    - name: Run Docker container
+      run: docker run --name resume-builder-container resume-builder
+
+    - name: Copy resume PDF
+      run: docker cp resume-builder-container:/workspace/sample.pdf ./sample.pdf
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
+        publish_branch: gh-pages
+
