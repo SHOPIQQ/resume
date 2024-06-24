@@ -1,6 +1,4 @@
-# AltaCV, yet another LaTeX CV/Résumé class
-
-v1.7 (9 Aug 2023), by Anatolii (@gmail.com)
+v1.7 (9 Aug 2023), by Anatolii (whocareswhatnickname@gmail.com)
 
 * v1.7 (9 Aug 2023) changes:
   - `\itemmarker` and `\ratingmarker` renamed to `\cvItemMarker` and `\cvRatingMarker`
